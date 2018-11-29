@@ -1,4 +1,4 @@
-var firstName, lastName, patronymicName, age, gender, ageAfterFiveYears, retiree;
+var firstName, lastName, patronymicName, age, gender, ageAfterFiveYears, retiree, sex;
 const DAYS_IN_YEAR = 365;
 lastName = prompt('Введите фамилию:','Иванов');
 firstName = prompt('Введите имя:','Иван');
@@ -12,27 +12,19 @@ if(isNaN(age)) {
 
 // определяем пол
 gender = confirm('Ваш пол - мужской?');
-switch (gender) {
-    case true:
-        gender = 'мужской';
-        break;
-    default:
-        gender = 'женский';
-        break;
-}
+sex = (gender !== false) ? 'мужской' : 'женский';
+
 
 // определяем, находится ли пользователь на пенсии
-if (age >= 58 && gender === 'женский') {
-    retiree = 'да';
-} else if (age >= 63) {
+if (age >= 63 || age >= 58 && sex === 'женский') {
     retiree = 'да';
 } else {
     retiree = 'нет';
 }
 
-// проверка ввода ФИО
+// проверка ввода ФИО пользователя
 function checktype(a) {
-    if (a === null) {
+    if (a === false) {
         return a = ('Нет данных!');
     } else {
         return a;
@@ -46,5 +38,5 @@ alert('ваше ФИО: ' + checktype(lastName) + ' ' + checktype(firstName) + '
     'ваш возраст в годах: ' + age + '\n' +
     'ваш возраст в днях: ' + (DAYS_IN_YEAR * age) + '\n' +
     'через 5 лет вам будет: ' + (age + 5) + '\n' +
-    'ваш пол: ' + gender + '\n' +
+    'ваш пол: ' + sex + '\n' +
     'вы на пенсии: ' + retiree);
