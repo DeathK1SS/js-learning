@@ -1,26 +1,36 @@
-var firstName, lastName, patronymicName, age, gender, ageAfterFiveYears, retiree, sex;
+var userInfo={}, retiree, ageAfterFiveYears;
 const DAYS_IN_YEAR = 365;
-lastName = prompt('Введите фамилию:','Иванов');
-firstName = prompt('Введите имя:','Иван');
-patronymicName = prompt('Введите отчество:','Иванович');
-age = parseInt(prompt('Введите возраст:','18'));
+userInfo.lastName = prompt('Введите фамилию:','Иванов');
+userInfo.firstName = prompt('Введите имя:','Иван');
+userInfo.patronymicName = prompt('Введите отчество:','Иванович');
+userInfo.age = parseInt(prompt('Введите возраст:','18'));
 
 // проверка, является ли введённый возраст числом, если нет - берём значение по умолчанию
-if(isNaN(age)) {
-    age = 18;
+if(isNaN(userInfo.age)) {
+    userInfo.age = 18;
 }
 
 // определяем пол
-gender = confirm('Ваш пол - мужской?');
-sex = (gender !== false) ? 'мужской' : 'женский';
-
+userInfo.gender = confirm('Ваш пол - мужской?');
+userInfo.sex = (userInfo.gender !== false) ? 'мужской' : 'женский';
 
 // определяем, находится ли пользователь на пенсии
-if (age >= 63 || age >= 58 && sex === 'женский') {
+if (userInfo.age >= 63 || userInfo.age >= 58 && userInfo.sex === 'женский') {
     retiree = 'да';
 } else {
     retiree = 'нет';
 }
+
+// считаем количество лет через 5 лет
+ageAfterFiveYears = userInfo.age + 5;
+
+// выводим полученную информацию
+alert('ваше ФИО: ' + checktype(userInfo.lastName) + ' ' + checktype(userInfo.firstName) + ' ' + checktype(userInfo.patronymicName) + '\n' +
+    'ваш возраст в годах: ' + userInfo.age + '\n' +
+    'ваш возраст в днях: ' + (DAYS_IN_YEAR * userInfo.age) + '\n' +
+    'через 5 лет вам будет: ' + (userInfo.age + 5) + '\n' +
+    'ваш пол: ' + userInfo.sex + '\n' +
+    'вы на пенсии: ' + retiree);
 
 // проверка ввода ФИО пользователя
 function checktype(a) {
@@ -30,13 +40,3 @@ function checktype(a) {
         return a;
     }
 }
-
-// считаем количество лет через 5 лет
-ageAfterFiveYears = age + 5;
-
-alert('ваше ФИО: ' + checktype(lastName) + ' ' + checktype(firstName) + ' ' + checktype(patronymicName) + '\n' +
-    'ваш возраст в годах: ' + age + '\n' +
-    'ваш возраст в днях: ' + (DAYS_IN_YEAR * age) + '\n' +
-    'через 5 лет вам будет: ' + (age + 5) + '\n' +
-    'ваш пол: ' + sex + '\n' +
-    'вы на пенсии: ' + retiree);
