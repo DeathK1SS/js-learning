@@ -24,7 +24,7 @@ if (age >= 63 || age >= 58 && sex === 'женский') {
 
 // проверка ввода ФИО пользователя
 function checktype(a) {
-    if (a === false) {
+    if (!!a == false) {
         return a = ('Нет данных!');
     } else {
         return a;
