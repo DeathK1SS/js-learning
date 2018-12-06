@@ -9,11 +9,11 @@ do {
 } while (numbers.a > numbers.b);
 
 
-console.log(summ(numbers.b));
+console.log(summ(numbers.a, numbers.b));
 
-function summ(b) {
-    if (b <= numbers.a) {
+function summ(a, b) {
+    if (b <= a) {
         return b;
     }
-    return b + summ(b - 1);
+    return b + summ(a, b - 1);
 }
